@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
+
 const handlebars = require("express-handlebars"); //load the package
+const blogPosts = require("./data/blogPosts.json");
+console.log("here are the blogs", blogPosts);
 app.engine("handlebars", handlebars());
 app.set("view engine", "handlebars");
 app.use(express.static("public"));
@@ -10,7 +13,8 @@ app.get("/", (req, res) => {
   res.render("index", {
     name: "fakher",
     date: new Date().toLocaleString(),
-    pagename: "index"
+    pagename: "index",
+    blogPosts: blogPosts
   });
 });
 
